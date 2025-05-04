@@ -17,6 +17,17 @@ spot = spotipy.Spotify(auth_manager=SpotifyOAuth(
     scope=scope
 ))
 
-# depois da autenticação, o id do usuário atual
-user_id = spot.current_user()["id"]
+def get_album_covers_urls(playlist_id, limit):
+    if not playlist_id or not limit:
+        return
 
+    # definição da playlist e de quantas capas vão ser retornadas
+    tracks = spot.playlist_tracks(playlist_id=playlist_id, limit=limit)
+    cover_urls = []
+
+    # pegar a primeira imagem do album de cada track
+    for track in tracks['items']:
+        album_cover = track['track']['album']['images'][0]['url']
+        cover_urls.append(album_cover)
+
+    return cover_urls
