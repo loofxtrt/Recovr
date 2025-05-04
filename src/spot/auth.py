@@ -1,15 +1,7 @@
-import logging
-from rich.logging import RichHandler
-from rich.text import Text
-
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(message)s",
-    handlers=[RichHandler(rich_tracebacks=True)]
-)
+from utils import reclog
 
 # credenciais
 client_id = "09e03a12d3494e0faa7e341bcf01d175"     # identifica o app
@@ -34,18 +26,18 @@ def change_prefix(old_prefix, new_prefix):
         playlist_id = playlist['id']
         description = playlist.get('description', '')
 
-        logging.info(f"Checking for {playlist['name']}")
+        reclog.info(f"Checking for {playlist['name']}")
         
         if description == None:
-            logging.info("No description found, moving on")
+            reclog.info("No description found, moving on")
             return
         
-        logging.info(f"Current description: {description}")
+        reclog.info(f"Current description: {description}")
 
         if old_prefix in description:
             new_description = description.replace(old_prefix, new_prefix)
             spot.playlist_change_details(playlist_id=playlist_id, description=new_description)
             
-            logging.info(f"Prefix for {playlist['name']} changed {old_prefix} ---> {new_prefix}")
+            reclog.info(f"Prefix for {playlist['name']} changed {old_prefix} ---> {new_prefix}")
         else:
-            logging.info(f"Old prefix not found in {playlist['name']}, moving on")
+            reclog.info(f"Old prefix not found in {playlist['name']}, moving on")
