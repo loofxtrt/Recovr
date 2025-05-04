@@ -1,25 +1,25 @@
 import argparse
+from spot.auth import change_prefix
 
-from spotipy.auth import get_album_covers_urls
+def handle_prefix(old_prefix, new_prefix):
+    change_prefix(old_prefix, new_prefix)
 
-def generate_grid(link, size):
-    # obter o id da playlist a partir do link
-    playlist_id = link.split("/")[-1].split("?")[0]
+def create_parser():
+    parser = argparse.ArgumentParser(description="Spotify playlist manager") # criação do parser principal
+    subparsers = parser.add_subparsers(dest="command", required=True)        # criação do subparser
 
-    covers_urls = get_album_covers_urls(playlist_id, size)
+    # subcomando: prefix
+    parser_prefix = subparsers.add_parser("prefix", help="Changes the prefix used to identify playlist tags")
+    parser_prefix.add_argument("old_prefix")
+    parser_prefix.add_argument("new_prefix")
+    parser_prefix.set_defaults(func=lambda args: handle_prefix(args.old_prefix, args.new_prefix))
 
-# definição dos parsers
-parser = argparse.ArgumentParser(description="Playlist cover generator") # criação do parser principal
-subparsers = parser.add_subparsers(dest="result", required=True)         # criação do grupo de subcomandos
+    return parser
 
-# subcomando grid
-parser_grid = subparsers.add_parser("grid", help="Generates a grid with the album covers inside the playlist")
-parser_grid.add_argument("link", help="Link to the playlist")
-parser_grid.add_argument("grid", type=int, help="How many covers per row and column")
+def main():
+    parser = create_parser()
+    args = parser.parse_args()
+    args.func(args)
 
-# definir a função a ser chamada pra esse comando
-parser_grid.set_defaults(func=generate_grid)
-
-# receber os argumentos
-args = parser.parse_args()      # interpretar os argumentos
-args.func(args.link, args.size) # chamar a função correspondente ao subcomando e passar os argumentos
+if __name__ == "__main__":
+    main()
