@@ -1,5 +1,5 @@
 import argparse
-from spot.auth import change_prefix
+from spot.auth import change_prefix, cover_grayscale
 
 def handle_prefix(old_prefix, new_prefix):
     change_prefix(old_prefix, new_prefix)
@@ -13,6 +13,11 @@ def create_parser():
     parser_prefix.add_argument("old_prefix")
     parser_prefix.add_argument("new_prefix")
     parser_prefix.set_defaults(func=lambda args: handle_prefix(args.old_prefix, args.new_prefix))
+
+    # subcomando: gray
+    parser_gray = subparsers.add_parser("gray", help="Converts the current playlist cover to a grayscale")
+    parser_gray.add_argument("url")
+    parser_gray.set_defaults(func=lambda args: cover_grayscale(args.url))
 
     return parser
 
