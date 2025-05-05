@@ -1,7 +1,7 @@
 import argparse
 
 from spotify.authorization import spot
-from commands.prefix import prefix
+from commands.prefix import print_current_prefix, set_prefix
 from commands.covers import covers
 
 def create_parser():
@@ -10,9 +10,8 @@ def create_parser():
 
     # subcomando: prefix
     parser_prefix = subparsers.add_parser("prefix", help="Changes the prefix used to identify playlist tags")
-    parser_prefix.add_argument("old_prefix")
-    parser_prefix.add_argument("new_prefix")
-    parser_prefix.set_defaults(func=lambda args: prefix(spot, args.old_prefix, args.new_prefix))
+    parser_prefix.add_argument("--set", type=str, help="New prefix")
+    parser_prefix.set_defaults(func=handle_prefix)
 
     # subcomando: gray
     #parser_gray = subparsers.add_parser("gray", help="Converts the current playlist cover to a grayscale")
@@ -25,10 +24,17 @@ def create_parser():
 
     return parser
 
+def handle_prefix(args):
+    # se --set foi passado
+    if args.set:
+        set_prefix(spot, args.set)
+    else:
+        print_current_prefix()
+
 def main():
     parser = create_parser()
     args = parser.parse_args()
-    args.func(args)
+    args.func(args) # executa a função associada ao comando
 
 if __name__ == "__main__":
     main()
