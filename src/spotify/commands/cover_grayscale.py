@@ -4,7 +4,7 @@ from io import BytesIO
 from utils import reclog
 from utils.extract_playlist_id import extract_playlist_id
 from pillow.grayscale import grayscale
-from spotify.utils.download_playlist_covers import download_playlist_cover
+from spotify.utils.download_playlist_cover import download_playlist_cover
 
 def cover_grayscale(spot, playlist_url):
     playlist_id = extract_playlist_id(playlist_url) # extrair o id da url da playlist
@@ -23,4 +23,4 @@ def cover_grayscale(spot, playlist_url):
     cover_64 = base64.b64encode(data_bytes).decode('utf-8')
     spot.playlist_upload_cover_image(playlist_id=playlist_id, image_b64=cover_64)
 
-    reclog.info("Changed cover to grayscale")
+    reclog.info("Converted current cover to to grayscale")
