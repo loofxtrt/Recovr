@@ -21,16 +21,17 @@ def covers(spot):
         if f"cover{prefix}gray" in description:
             new_cover = stack(spot, playlist_id, "grayscale")
 
-        type_map = {
-            "type:genre": ("gen", "#e00003"),
-            "type:collection": ("col", "#f5db00"),
-            "type:soundslike": ("sol", "#293deb"),
-            "type:media": ("med", "#f564b0")
-        }
-        for key in type_map:
-            if key in description:
-                label, color = type_map[key]
-                new_cover = stack(spot, playlist_id, "text", text=label, color=color)
+        # ISSO AQUI É UM PERIGO (adiciona textos nas capas sem salvar a versão anterior, então não tem backup)
+        #type_map = {
+        #    "type:genre": ("gen", "#e00003"),
+        #    "type:collection": ("col", "#f5db00"),
+        #    "type:soundslike": ("sol", "#293deb"),
+        #    "type:media": ("med", "#f564b0")
+        #}
+        #for key in type_map:
+        #    if key in description:
+        #        label, color = type_map[key]
+        #        new_cover = stack(spot, playlist_id, "text", text=label, color=color)
 
         # aplicação
         if new_cover is not None:
