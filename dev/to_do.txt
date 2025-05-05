@@ -1,3 +1,0 @@
-comando gray all e cover:tag
-separar spot em vários .py
-detalhe com o nome da playlist reclog.info("Changed cover to grayscale")
