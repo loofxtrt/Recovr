@@ -11,10 +11,10 @@ def info(arg1, arg2=None):
 
 def log(category="info", pos1=default_message, pos2=None):
     """
-        cria uma mensagem de log
-        os argumentos dessa função podem ser passados só como uma string pura: reclog.info("mensagem")
-        ou como uma tupla contendo a string da mensagem e a segunda string definindo o estilo: reclog.info(("mensagem", "green bold"))
-        o segundo argumento da posição 2 é opcional
+    cria uma mensagem de log
+    os argumentos dessa função podem ser passados só como uma string pura: reclog.info("mensagem")
+    ou como uma tupla contendo a string da mensagem e a segunda string definindo o estilo: reclog.info(("mensagem", "green bold"))
+    o segundo argumento da posição 2 é opcional
     """
 
     # criar o objeto de texto do rich
