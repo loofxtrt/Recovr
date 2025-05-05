@@ -1,9 +1,9 @@
 import argparse
 
 from spotify.authorization import spot
-from spotify.commands.prefix import prefix
-from spotify.commands.cover_grayscale import cover_grayscale
-from spotify.commands.covers import covers
+from commands.prefix import prefix
+from commands.cover_grayscale import cover_grayscale
+from commands.covers import covers
 
 def create_parser():
     parser = argparse.ArgumentParser(description="Spotify playlist manager") # criação do parser principal

@@ -1,5 +1,5 @@
 from utils import reclog
-from spotify.utils.get_all_playlists import get_all_playlists
+from spotify.get_all_playlists import get_all_playlists
 
 def prefix(spot, old_prefix, new_prefix):
     playlists = get_all_playlists(spot=spot)

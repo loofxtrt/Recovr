@@ -3,10 +3,10 @@ from io import BytesIO
 
 from utils import reclog
 from utils.extract_playlist_id import extract_playlist_id
-from pillow.grayscale import grayscale
-from spotify.utils.download_playlist_cover import download_playlist_cover
+from manipulate.grayscale import grayscale
+from spotify.download_playlist_cover import download_playlist_cover
 
-def cover_grayscale(spot, playlist_url):
+def cover_apply_grayscale(spot, playlist_url):
     playlist_id = extract_playlist_id(playlist_url) # extrair o id da url da playlist
     buffer = BytesIO() # buffer pra salvar temporariamente a imagem
 
