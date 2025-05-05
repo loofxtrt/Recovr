@@ -2,7 +2,6 @@ import argparse
 
 from spotify.authorization import spot
 from commands.prefix import prefix
-from commands.cover_grayscale import cover_grayscale
 from commands.covers import covers
 
 def create_parser():
@@ -16,9 +15,9 @@ def create_parser():
     parser_prefix.set_defaults(func=lambda args: prefix(spot, args.old_prefix, args.new_prefix))
 
     # subcomando: gray
-    parser_gray = subparsers.add_parser("gray", help="Converts the current playlist cover to a grayscale")
-    parser_gray.add_argument("url")
-    parser_gray.set_defaults(func=lambda args: cover_grayscale(spot, args.url))
+    #parser_gray = subparsers.add_parser("gray", help="Converts the current playlist cover to a grayscale")
+    #parser_gray.add_argument("url")
+    #parser_gray.set_defaults(func=lambda args: cover_grayscale(spot, args.url))
 
     # subcomando: covers
     parser_covers = subparsers.add_parser("covers", help="Updates covers based on the playlists descriptions")
