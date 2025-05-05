@@ -6,7 +6,7 @@ from utils import reclog
 config_path = "/media/luan/seagate/workspace/coding/projects/software/recovr/config.json"
 
 def get_current_prefix():
-    # checar se já existe um prefixo definido, e se não tiver, criar o padrão
+    # checar se já existe um prefixo definido, e se não tiver, instruir a criar um
     if os.path.exists(config_path):
         with open(config_path, "r") as f:
             try:
