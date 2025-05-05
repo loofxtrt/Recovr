@@ -1,3 +1,6 @@
-tmp.txt
-dis.txt
+.env
 .cache
+__pycache__/
+*.pyc
+
+/dev

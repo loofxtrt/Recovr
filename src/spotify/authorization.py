@@ -1,13 +1,21 @@
+import os
+
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
+from dotenv import load_dotenv
 
 from utils import reclog
 from utils.extract_playlist_id import extract_playlist_id
 
+# carregar dotenv
+load_dotenv()
+SPOTIFY_CLIENT_ID = os.getenv('SPOTIFY_CLIENT_ID')
+SPOTIFY_CLIENT_SECRET = os.getenv('SPOTIFY_CLIENT_SECRET')
+
 # credenciais
-client_id = "09e03a12d3494e0faa7e341bcf01d175"     # identifica o app
-client_secret = "57e071036d11471789d23232759972c3" # "senha" do app
-redirect_uri = "https://example.com"               # página pra onde o usuário vai ser redirecionado depois da autorização
+client_id = SPOTIFY_CLIENT_ID         # identifica o app
+client_secret = SPOTIFY_CLIENT_SECRET # "senha" do app
+redirect_uri = "https://example.com"  # página pra onde o usuário vai ser redirecionado depois da autorização
 
 # permissões
 scope = "playlist-read-private playlist-modify-public playlist-modify-private ugc-image-upload"
