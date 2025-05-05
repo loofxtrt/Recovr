@@ -101,3 +101,5 @@ def cover_grayscale(playlist_url):
     # passar a imagem pra base64 e aplicar na playlist
     cover_64 = base64.b64encode(data_bytes).decode('utf-8')
     spot.playlist_upload_cover_image(playlist_id=playlist_id, image_b64=cover_64)
+
+    reclog.info("Changed cover to grayscale")
